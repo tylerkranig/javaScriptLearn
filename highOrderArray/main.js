@@ -12,5 +12,44 @@ const companies= [
   
 const ages = [33, 12, 20, 16, 5, 54, 21, 44, 61, 13, 15, 45, 25, 64, 32];
 
-  // for each, no return, more elegant way to loop through data
-  ages.forEach()
+// for each, no return, more elegant way to loop through data
+companies.forEach(a => {
+  console.log(a)
+});
+
+// filter
+let canDrink = ages.filter(a => {
+  return a >= 21;
+})
+console.log(canDrink);
+
+const retailCompanies = companies.filter(company => {
+  return company.category === 'Retail';
+})
+console.log(retailCompanies)
+
+// some sorting here too, takes two arguements
+const eightiesCompanies = companies.filter(company => {
+  return company.start >= 1980 && company.start < 1990 ;
+}).sort((a, b) => {
+  return a.start - b.start;
+})
+console.log(eightiesCompanies)
+
+// map
+const companyNames = companies.map( company => 
+  `${company.name} test`
+);
+console.log(companyNames)
+
+// reduce
+// example add all the ages together
+const ageSum = ages.reduce( (total, age) => {
+  return total + age;
+}, 0);
+console.log(ageSum)
+
+const yearSum = companies.reduce( (total, comp) => {
+  return total + (comp.end - comp.start);
+}, 0);
+console.log(yearSum)
