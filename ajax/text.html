@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Ajax Text File</title>
+</head>
+<body>
+    <button id="button">Get Text</button>
+    <br><br>
+
+    <div id="text"></div>
+
+    <script>
+        document.getElementById('button').addEventListener('click', loadText2);
+
+        function loadText() {
+            // XHR object creation
+            var xhr = new XMLHttpRequest();
+            // Open function - type, url/file, async
+            xhr.open('GET', 'sample.txt', true);
+            xhr.onload = function() { // only runs after state 4
+                // 200 = OK
+                // 403 = Forbidden
+                // 404 = not found
+                if(this.status === 200){
+                    // console.log(this.responseText);
+                }
+            }
+            // finally send the request
+            xhr.send();
+        }
+        // On progress method also exists to do some loading activity
+        // runs during state 3
+        // on error as well to catch any errors during the request
+
+        function loadText2(){
+            // XHR object creation
+            var xhr = new XMLHttpRequest();
+            // Open function - type, url/file, async
+            xhr.open('GET', 'sample.txt', true);
+            xhr.onreadystatechange = function() {
+                // 4 different states, state 4 is ready
+                if(this.readyState === 4 && this.status === 200) {
+                    document.getElementById('text').innerHTML = this.responseText
+                }
+                console.log(this.readyState);
+            }
+            // finally send the request
+            xhr.send();
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>External API</title>
+</head>
+<body>
+    <button id="button">Load Git</button>
+    <br><br>
+
+    <h1>Github</h1>
+    <div id="users"></div>
+    <script type="text/javascript">
+        document.getElementById('button').addEventListener('click', loadAPI);
+        
+        function loadAPI() {
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', 'https://api.github.com/users', true);
+
+            xhr.onload = function() {
+                if(this.status === 200) {
+                    let users = JSON.parse(this.responseText);
+                    var output = '';
+                    users.forEach((user) => {
+                    output += `<img src=${user.avatar_url} width="70" height="70"><ul>
+                        
+                            <li>ID: ${user.login}</li></li>
+                        </ul>`;
+                    });
+                }
+                document.getElementById('users').innerHTML = output;
+            }
+
+            xhr.send();
+        }
+    </script>
+</body>
+</html>
