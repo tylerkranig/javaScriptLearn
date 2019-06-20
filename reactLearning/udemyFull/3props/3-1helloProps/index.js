@@ -2,8 +2,20 @@ class App extends React.Component {
     render() {
         return (
             <div>
-                <Hello to="Ringo" from="Paul"/>
-                <Hello to="Tyler" from="Tyler"/>
+                <Hello 
+                    to=" " 
+                    from="  " 
+                    bangs={4}
+                    data={[1,2,3,4,5]}
+                    isFlag
+                />
+                <Hello 
+                    to=" " 
+                    from="  " 
+                    bangs={10}
+                    data={[1,2,3,4,5]}
+                    isFlag
+                />
             </div>
         )
     }
