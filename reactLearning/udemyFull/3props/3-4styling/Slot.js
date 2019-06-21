@@ -10,4 +10,4 @@ class Slot extends React.Component {
             </div>
         )
     }
-}
+} 
