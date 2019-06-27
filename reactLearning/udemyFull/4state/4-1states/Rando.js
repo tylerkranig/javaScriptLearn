@@ -8,11 +8,11 @@ class Rando extends React.Component {
     }
     makeTimer(){
         setInterval(() => {
-            let rand = Math.random();
+            let rand = Math.floor(Math.random() *10) + 1;
             this.setState({num: rand});
         },1000);
     }
-    click = (e) => {
+    click = (e) => { // automatically binds "this" for you, Babel compiles this to actual js code
         this.setState({num: 1});
     };
     render() {

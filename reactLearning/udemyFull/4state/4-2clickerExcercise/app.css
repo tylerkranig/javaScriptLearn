@@ -1,0 +1,20 @@
+.Machine {
+    text-align: center;
+    border: 2px solid black;
+    background: lightblue;
+}
+.Winner {
+    color: white;
+    background: green;
+}
+.lose {
+    color: white;
+    background: red;
+}
+.button-secondary {
+    color: black;
+    border-radius: 4px;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+    font-size: 16px;
+    color
+}
