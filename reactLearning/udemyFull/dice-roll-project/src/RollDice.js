@@ -1,35 +1,55 @@
 import React, { Component } from "react";
-import Die from './Die.js';
+import Die from "./Die.js";
+import "./RollDice.css";
 
 class RollDice extends Component {
-    static defaultProps = {sides:['one', 'two', 'three', 'four', 'five', 'six']};
-  
-    constructor(props) {
-        super(props);
-        this.state = {
-            die1: 'one',
-            die2:'two'
-        }
-    }
+  static defaultProps = {
+    sides: ["one", "two", "three", "four", "five", "six"]
+  };
 
-    roll = () => {
-        const newDie1 = this.props.sides[Math.floor(Math.random() * this.props.sides.length)];
-        const newDie2 = this.props.sides[Math.floor(Math.random() * this.props.sides.length)];
+  constructor(props) {
+    super(props);
+    this.state = {
+      die1: "one",
+      die2: "two",
+      rolling: false
+    };
+  }
+
+  roll = () => {
+    const newDie1 = this.props.sides[
+      Math.floor(Math.random() * this.props.sides.length)
+    ];
+    const newDie2 = this.props.sides[
+      Math.floor(Math.random() * this.props.sides.length)
+    ];
+    this.setState({
+      die1: newDie1,
+      die2: newDie2,
+      rolling: true
+    });
+
+    //wait 1 second then set rolling to false to reset the button
+    setTimeout(() => {
         this.setState({
-            die1: newDie1,
-            die2: newDie2
+            rolling: false
         })
-    }
+    }, 1000)
+  };
 
-    render() {
-        return (
-            <div>
-                <Die face={this.state.die1} />
-                <Die face={this.state.die2} />
-                <button onClick={this.roll}>Roll Dice</button>
-            </div>
-        )
-    }
+  render() {
+    return (
+      <div className="RollDice">
+        <div className="RollDice-Container">
+          <Die face={this.state.die1} rolling={this.state.rolling} />
+          <Die face={this.state.die2} rolling={this.state.rolling} />
+        </div>
+        <button onClick={this.roll} disabled={this.state.rolling}>
+            {this.state.rolling ? 'Rolling...' : 'Roll Dice'}
+        </button>
+      </div>
+    );
+  }
 }
 
 export default RollDice;
