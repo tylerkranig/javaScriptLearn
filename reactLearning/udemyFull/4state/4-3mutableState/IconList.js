@@ -26,7 +26,7 @@ class IconList extends React.Component {
   addIcon = () => {
     let idx = Math.floor(Math.random() * this.props.options.length);
     let newIcon = this.props.options[idx];
-    //Wrong way
+    //Wrong way, we need to make the objects inside state immutable
     //   let temp = this.state.icons;
     //   temp.push(newIcon);
     //   this.setState({ icons: temp })

@@ -1,0 +1,20 @@
+Try to keep state as small as possible
+- It's hard to tell what component needs what but the idea is to minimize data inside
+- Ask: does x change? if not x should not be a part of state, it needs to be a prop
+-      is x already captured by another value y, if so derive it there instead
+
+State needs to live inside the parent
+- Parents will pass data from the state down to the child components
+- the child components pass data down as props
+- Not every component needs to be stateful
+IE: TODO List
+    common project for react, have a parent that manages all of the actual todo.components
+    Parent has a list of todo components, the components get passed in info as props
+    Downward data flow is an important idea in react
+
+Lottery example
+    Lottery Component: Props - title, numBalls, maxNum State - nums[] Events - onClick: regenerate nums in the state
+    Ball Component: Props - num
+
+Also final thing to remember do not mutate arrays inside the state, make copies instead
+    remember this.setState has a callback method that can be handy, calling map on each object inside an array
