@@ -1,0 +1,63 @@
+Coin Flip
+- One smart component keeps track of flips and the coin that was flipped and passes down that 
+data to the dumb component
+- rand.js handles the randomization of the coin flip and stores the data
+- display.js displays the data
+    this.setState( st => { // This is the callback version of the set state call, 
+    st is the old state, returns the new state
+        return {
+            currCoin: newCoin,
+            nflips: st.nflips + 1,
+            nHeads: st.nHeads + (newCoin.side === "heads" ? 1 : 0),
+            nTails: st.nTails + (newCoin.side === "tails" ? 1 : 0)
+        }
+    })
+
+Color Boxes
+    Using a stateless component for the boxes 
+    One issue with having a stateful parent and a stateless child is that you have 
+    to know what box was clicked
+
+Method Binding
+    This refers to the component itself in class based react
+    to Bind:
+        1 Use Bind inline
+            onClick={this.method.bind(this)} inside the actual event on the html element
+            - this is very explicit and requires multiple bindings if we pass to multiple components
+            - creates a new function every re-render as well, can lead to performance issues but not likely
+        2 Use arrow function
+            onClick={() => this.method()} note we call it here, because we are passing in a function to run
+            - syntactic sugar but pretty much does the same exact thing, still re-creates the function every single render
+        3 Bind in the constructor
+            this makes sure that the function does not get re-created on every single re-render
+            - Only con is that this is "ugly"
+            this.method = this.method.bind(this)
+
+    Experimental Binding method
+        public class fields syntax
+        method = () => {
+            console.log(this); this will be bound to the component correctly
+        }
+        - Behind the scenes method will get added to the contructor using babel
+
+Method Binding with Arguements
+    How do we pass in agruements to methods in onClick events or other such events 
+        - if you pass in arguements the method gets exectuted immediately
+            Have to map each button to have a different on click based on what arguements need to be passed
+            this.method.bind(this, arg) this makes it so that arg will be passed in every time the method is called
+
+Passing methods to child components
+    - helps in creating stateless child components
+    - have the child function call a function in the parent
+    side cool function:
+    remove(num) {
+        this.setState(st => ({
+            nums: st.nums.filter(n => n !== num); filter out num from nums, creates a new array, best practice
+        }));
+    }
+
+    contructor of parent binds the method or use the syntactic sugar above (Experimental Binding method)
+    Child component creates a new method to call the props function passed down from the parent
+
+Bind as high as possible, don't do in the child component if possible, avoid inline binding and inside render
+Parent method: action  Child Method: handleAction

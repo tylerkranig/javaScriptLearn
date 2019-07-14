@@ -6,13 +6,13 @@ function choice(arr) {
 class Box extends React.Component {
   static defaultProps = {
     allColors: ["purple", "magenta", "blue", "green"]
-  }
+  };
 
   constructor(props) {
     super(props);
     this.state = {
-      color: choice(this.props.allColors),
-    }
+      color: choice(this.props.allColors)
+    };
   }
 
   pickColor() {
@@ -20,21 +20,22 @@ class Box extends React.Component {
 
     do {
       newColor = choice(this.props.allColors);
-    } while(newColor === this.state.color)
+    } while (newColor === this.state.color);
 
-    this.setState({color: newColor});
+    this.setState({ color: newColor });
   }
 
   handleClick = () => {
     this.pickColor();
-  }
+  };
 
   render() {
     return (
-      <div className="Box" style={{backgroundColor: this.state.color}} onClick={this.handleClick}>
-        
-      </div>
-    )
+      <div
+        className="Box"
+        style={{ backgroundColor: this.state.color }}
+        onClick={this.handleClick}
+      />
+    );
   }
-
 }
