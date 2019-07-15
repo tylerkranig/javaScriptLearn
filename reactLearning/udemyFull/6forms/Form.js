@@ -2,9 +2,8 @@ class Form extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            fullName: "",
-            email: "",
-            password: ""
+            name: "",
+            quantity: "",
         }
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -12,7 +11,8 @@ class Form extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        alert(`you typed ${this.state.fullName}`);
+        this.props.addItem(this.state);
+        this.setState({name:"",quantity:""});
     }
 
     handleChange(e) {
@@ -24,24 +24,20 @@ class Form extends React.Component {
     render() {
         return (
             <form onSubmit={this.handleSubmit}>
-                <label>Fullname: </label>
+                <label htmlFor='name'>Name: </label>
                 <input 
-                    name="fullName" 
-                    value={this.state.fullName} 
+                    id='name'
+                    name="name" 
+                    value={this.state.name} 
                     onChange={this.handleChange}
                 />
+                <label htmlFor='quantity'>Quantity: </label>
                 <input 
-                    type='email' 
-                    name="email"
-                    placeholder='email' 
-                    value={this.state.email}
+                    type='quantity' 
+                    name="quantity"
+                    placeholder='quantity' 
+                    value={this.state.quantity}
                     onChange={this.handleChange} />
-                <input 
-                    type='password' 
-                    name="password"
-                    placeholder='password'
-                    value={this.state.password} 
-                    onChange={this.handleChange}/>
                 <button>Add</button>
             </form>
         );
