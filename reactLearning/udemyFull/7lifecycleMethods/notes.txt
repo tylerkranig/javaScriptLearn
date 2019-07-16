@@ -1,0 +1,7 @@
+Mounting,          Updating           Unmounting
+componentDidMount, componentDidUpdate, componentWillUnmount
+
+componentDidMount only runs once at the beggining, subsequent changes run render
+
+Data queries are usually ran inside componentDidMount
+useEffect replaces componentDidMount and componentDidUpdate
