@@ -7,6 +7,7 @@ class Data extends React.Component {
         this.componentDidMount = this.componentDidMount.bind(this);
     }
     
+    // could do this async, then have an await before axios.get then any code after will run after axios returns
     componentDidMount() {
         axios.get("https://api.github.com/zen").then(resp => {
             this.setState({ quote: resp.data });
